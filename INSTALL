@@ -1,0 +1,20 @@
+************************************************************************
+* nextCloud - AfterLogic WebMail
+* @copyright 2002-2018 AfterLogic Corp.
+************************************************************************
+
+REQUIREMENTS:
+- Installed and configured AfterLogic WebMail
+- nextCloud version 13 or higher
+
+INSTALL:
+- Unpack the AfterLogic WebMail application package in the apps directory of your nextCloud instance
+
+CONFIGURATION:
+
+	1) In the Apps > Enable 'AfterLogic' plugin.
+	2) In the Settings > Admin > AfterLogic WebMail Settings >
+	Enter "Web URL to AfterLogic WebMail installation" and "File path to AfterLogic WebMail installation".
+	Keep in mind that absolute filesystem path needs to be supplied there. If you install this
+	on a shared hosting, you might need to check the filesystem path with your hosting provider.
+	3) In the Settings > Personal > Type your e-mail address and password for that e-mail account.
