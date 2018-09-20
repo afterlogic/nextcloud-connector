@@ -1,2 +1,0 @@
-<iframe style="border: none; width: 100%; position: absolute; height: 100%; height: calc(100% - 50px); top: 50px; left: 0px; right: 0px; bottom: 0px;"
-	tabindex="-1" frameborder="0" src="<?php echo $_['afterlogic-url']; ?>"></iframe>
