@@ -11,7 +11,7 @@ OCP\App::checkAppEnabled('afterlogic');
 $sUrl = trim(\OC::$server->getConfig()->getAppValue('afterlogic', 'afterlogic-url', ''));
 $sPath = trim(\OC::$server->getConfig()->getAppValue('afterlogic', 'afterlogic-path', ''));
 
-if ('' === $sUrl || '' === $sPath)
+if ('' === $sUrl)
 {
 	$oTemplate = new OCP\Template('afterlogic', 'not-configured', 'user');
 }
@@ -33,8 +33,12 @@ else
 	{
 		$sUrl .= '/';
 	}
-	
-	$sResultUrl = empty($sSsoHash) ? $sUrl.'?sso' : $sUrl.'?sso&hash='.$sSsoHash;
+
+	if ('' === $sPath) {
+	    $sResultUrl = $sUrl.'?postlogin&Email='.urlencode($sEmail).(($sLogin==='')?'':'&Login='.urlencode($sLogin)).'&Password='.urlencode($sPassword);
+	} else {
+	    $sResultUrl = empty($sSsoHash) ? $sUrl.'?sso' : $sUrl.'?sso&hash='.$sSsoHash;
+	}	
 	$oTemplate = new OCP\Template('afterlogic', 'iframe', 'user');
 	$oTemplate->assign('afterlogic-url', $sResultUrl);
 }

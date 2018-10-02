@@ -13,7 +13,8 @@ OCP\Util::addScript('afterlogic', 'afterlogic');
 $sUrl = trim(\OC::$server->getConfig()->getAppValue('afterlogic', 'afterlogic-url', ''));
 $sPath = trim(\OC::$server->getConfig()->getAppValue('afterlogic', 'afterlogic-path', ''));
 
-if ('' === $sUrl || '' === $sPath)
+//if ('' === $sUrl || '' === $sPath)
+if ('' === $sUrl)
 {
 	$oTemplate = new OCP\Template('afterlogic', 'empty');
 }

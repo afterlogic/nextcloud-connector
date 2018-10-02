@@ -3,7 +3,7 @@
 	<id>afterlogic</id>
 	<name>AfterLogic</name>
 	<description>AfterLogic WebMail</description>
-	<version>1.2.0</version>
+	<version>1.2.1</version>
 	<licence>AGPL</licence>
 	<author>AfterLogic Corp.</author>
 	<summary>Integration with AfterLogic WebMail client</summary>
