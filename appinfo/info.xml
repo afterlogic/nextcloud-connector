@@ -17,6 +17,6 @@
 	<screenshot>https://afterlogic.org/images/products/wml8/screen1.png</screenshot>
 	<website>https://afterlogic.org/webmail-lite</website>
         <dependencies>
-            <nextcloud min-version="13.0" max-version="14.0"/>
+            <nextcloud min-version="13.0" max-version="16.0"/>
         </dependencies>
 </info>
