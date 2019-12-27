@@ -6,7 +6,6 @@
  */
 
 \OC_JSON::checkAdminUser();
-\OC_JSON::checkAppEnabled('afterlogic');
 \OC_JSON::callCheck();
 
 if (isset($_POST['appname'], $_POST['afterlogic-url'], $_POST['afterlogic-path']) && 'afterlogic' === $_POST['appname'])

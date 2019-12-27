@@ -6,7 +6,6 @@
  */
 
 \OC_JSON::checkLoggedIn();
-\OC_JSON::checkAppEnabled('afterlogic');
 \OC_JSON::callCheck();
 
 if (isset($_POST['appname'], $_POST['afterlogic-password'], $_POST['afterlogic-email'], $_POST['afterlogic-login']) && 'afterlogic' === $_POST['appname'])

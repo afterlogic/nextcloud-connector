@@ -6,8 +6,6 @@
  */
 
 OCP\User::checkLoggedIn();
-OCP\App::checkAppEnabled('afterlogic');
-
 OCP\Util::addScript('afterlogic', 'afterlogic');
 
 $sUrl = trim(\OC::$server->getConfig()->getAppValue('afterlogic', 'afterlogic-url', ''));

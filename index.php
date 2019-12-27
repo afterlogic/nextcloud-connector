@@ -5,7 +5,6 @@
  * @copyright 2002-2018 AfterLogic Corp.
  */
 OCP\User::checkLoggedIn();
-OCP\App::checkAppEnabled('afterlogic');
 \OC::$server->getNavigationManager()->setActiveEntry('afterlogic_index');
 
 $sUrl = trim(\OC::$server->getConfig()->getAppValue('afterlogic', 'afterlogic-url', ''));
