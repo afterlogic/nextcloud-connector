@@ -3,7 +3,7 @@
 	<id>afterlogic</id>
 	<name>AfterLogic</name>
 	<description>AfterLogic WebMail</description>
-	<version>1.2.3</version>
+	<version>1.2.18</version>
 	<licence>AGPL</licence>
 	<author>AfterLogic Corp.</author>
 	<summary>Integration with AfterLogic WebMail client</summary>
@@ -17,6 +17,6 @@
 	<screenshot>https://afterlogic.org/images/products/wml8/screen1.png</screenshot>
 	<website>https://afterlogic.org/webmail-lite</website>
         <dependencies>
-            <nextcloud min-version="13.0" max-version="17.0"/>
+            <nextcloud min-version="13.0" max-version="18.0"/>
         </dependencies>
 </info>
