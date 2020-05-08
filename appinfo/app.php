@@ -11,7 +11,7 @@ OCP\App::registerPersonal('afterlogic', 'personal');
 $sUrl = trim(\OC::$server->getConfig()->getAppValue('afterlogic', 'afterlogic-url', ''));
 $sPath = trim(\OC::$server->getConfig()->getAppValue('afterlogic', 'afterlogic-path', ''));
 
-if (('' !== $sUrl && '' !== $sPath) || OC_User::isAdminUser(OC_User::getUser()))
+if ('' !== $sUrl || OC_User::isAdminUser(OC_User::getUser()))
 {
 	OCP\Util::addScript('afterlogic', 'afterlogic');
 
