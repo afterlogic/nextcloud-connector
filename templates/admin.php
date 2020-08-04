@@ -4,16 +4,16 @@
 		<input type="hidden" name="appname" value="afterlogic">
 
 		<fieldset class="personalblock">
-			<h2><?php p($l->t('AfterLogic WebMail')); ?></h2>
+			<h2><?php p($l->t('Afterlogic WebMail')); ?></h2>
 			<br />
 			<p>
-				<?php p($l->t('Web URL to AfterLogic WebMail installation')); ?>:
+				<?php p($l->t('Web URL to Afterlogic WebMail installation')); ?>:
 				<br />
 				<input type="text" style="width: 350px;" name="afterlogic-url"
 					value="<?php echo $_['afterlogic-url']; ?>" placeholder="https://" />
 				<br />
 				<br />
-				<?php p($l->t('File path to AfterLogic WebMail installation')); ?>:
+				<?php p($l->t('File path to Afterlogic WebMail installation')); ?>:
 				<br />
 				<input type="text" style="width: 350px;" name="afterlogic-path"
 					value="<?php echo $_['afterlogic-path']; ?>" />
