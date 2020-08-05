@@ -57,7 +57,8 @@ class PageController extends Controller {
 		$params=['afterlogic-url' => $sResultUrl];
 		$oTemplate = new TemplateResponse('afterlogic', 'iframe', $params);
 		$csp = new ContentSecurityPolicy();
-                $csp->addAllowedFrameDomain("'self'");
+		$sUrlParts = parse_url($sUrl);
+                $csp->addAllowedFrameDomain($sUrlParts["host"]);
                 $oTemplate->setContentSecurityPolicy($csp);
 	}
 	return $oTemplate;
