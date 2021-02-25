@@ -1,6 +1,6 @@
 nextCloud - Afterlogic WebMail integration
 ==========================================
-© Copyright 2002-2020 Afterlogic Corp.
+© Copyright 2002-2021 Afterlogic Corp.
 
 Installation and configuration guidelines are available at:
 
