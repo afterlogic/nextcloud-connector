@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <info>
 	<id>afterlogic</id>
-	<name>AfterLogic</name>
-	<description>AfterLogic WebMail</description>
-	<version>1.2.18-1</version>
+	<name>Afterlogic</name>
+	<description>Afterlogic WebMail</description>
+	<version>2.0.1</version>
 	<licence>AGPL</licence>
-	<author>AfterLogic Corp.</author>
-	<summary>Integration with AfterLogic WebMail client</summary>
+	<author>Afterlogic Corp.</author>
+	<summary>Integration with Afterlogic WebMail client</summary>
 	<documentation>
 	    <user>https://afterlogic.com/docs/webmail-lite-8</user>
-	    <admin>https://afterlogic.com/docs/webmail-lite-8</admin>
+	    <admin>https://afterlogic.com/docs/webmail-lite-8/configuring-webmail/nextcloud-integration</admin>
 	    <developer>https://afterlogic.com/docs/webmail-lite-8</developer>
 	</documentation>
 	<category>integration</category>
@@ -17,6 +17,6 @@
 	<screenshot>https://afterlogic.org/images/products/wml8/screen1.png</screenshot>
 	<website>https://afterlogic.org/webmail-lite</website>
         <dependencies>
-            <nextcloud min-version="13.0" max-version="18.0"/>
+            <nextcloud min-version="19" max-version="21"/>
         </dependencies>
 </info>
