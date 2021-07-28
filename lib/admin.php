@@ -5,7 +5,7 @@
  * @copyright 2002-2021 Afterlogic Corp.
  */
 
-OCP\User::checkAdminUser();
+\OC_JSON::checkAdminUser();
 
 OCP\Util::addScript('afterlogic', 'afterlogic');
 

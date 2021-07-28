@@ -5,7 +5,7 @@
  * @copyright 2002-2021 Afterlogic Corp.
  */
 
-OCP\User::checkLoggedIn();
+OC_Util::checkLoggedIn();
 OCP\Util::addScript('afterlogic', 'afterlogic');
 
 $sUrl = trim(\OC::$server->getConfig()->getAppValue('afterlogic', 'afterlogic-url', ''));
@@ -17,7 +17,7 @@ if ('' === $sUrl)
 }
 else
 {
-	$sUser = OCP\User::getUser();
+	$sUser = \OC_User::getUser();
 
 	$oTemplate = new OCP\Template('afterlogic', 'personal');
 

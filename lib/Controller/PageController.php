@@ -33,7 +33,7 @@ class PageController extends Controller {
 	}
 	else
 	{
-		$sUser = \OCP\User::getUser();
+		$sUser = \OC_User::getUser();
 
 		$sEmail = \OC::$server->getConfig()->getUserValue($sUser, 'afterlogic', 'afterlogic-email', '');
 		$sPassword = \OC::$server->getConfig()->getUserValue($sUser, 'afterlogic', 'afterlogic-password', '');

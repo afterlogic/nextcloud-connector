@@ -25,7 +25,7 @@ class AjaxController extends Controller {
 	if (isset($_POST['appname'], $_POST['afterlogic-password'], $_POST['afterlogic-email']) && 'afterlogic' === $_POST['appname'])
 	{
 
-		$sUser = \OCP\User::getUser();
+		$sUser = \OC_User::getUser();
 
 		$sEmail = $_POST['afterlogic-email'];
 		\OC::$server->getConfig()->setUserValue($sUser, 'afterlogic', 'afterlogic-email', $sEmail);
