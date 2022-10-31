@@ -1,9 +1,5 @@
 <?php
 
-\OCP\App::registerPersonal('afterlogic', 'lib/personal');
-if (\OC_User::isAdminUser(\OC_User::getUser()))
-    \OCP\App::registerAdmin('afterlogic', 'lib/admin');
-
 $sUrl = trim(\OC::$server->getConfig()->getAppValue('afterlogic', 'afterlogic-url', ''));
 $sPath = trim(\OC::$server->getConfig()->getAppValue('afterlogic', 'afterlogic-path', ''));
 

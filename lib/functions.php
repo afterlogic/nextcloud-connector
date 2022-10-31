@@ -2,7 +2,7 @@
 
 /**
  * nextCloud - Afterlogic WebMail integration
- * @copyright 2002-2021 Afterlogic Corp.
+ * @copyright 2002-2022 Afterlogic Corp.
  */
 
 /**
