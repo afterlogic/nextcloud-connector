@@ -14,9 +14,9 @@
 				<br />
 				<br />
 				<?php p($l->t('Afterlogic WebMail authentication method')); ?>:
-				<br />(<a href="https://afterlogic.com/docs/webmail-lite-8/configuring-webmail/nextcloud-integration" target="_blank"><?php p($l->t('check this documentation page for details')); ?></a>)<br />
-				<br /><input style="vertical-align: middle;" type="radio" id="path-1" name="afterlogic-path" value="web" <?php echo (($_['afterlogic-path']!="")?'checked="checked" ':''); ?>/>&nbsp;<label for="path-1">Web API (recommended option)</label>
-				<br /><input style="vertical-align: middle;" type="radio" id="path-2" name="afterlogic-path" value="" <?php echo (($_['afterlogic-path']=="")?'checked="checked" ':''); ?>/>&nbsp;<label for="path-2">POST (for diff. domains/servers)</label>
+				<br />(<a href="https://afterlogic.com/docs/webmail-lite/configuring-webmail/nextcloud-integration" target="_blank"><?php p($l->t('check this documentation page for details')); ?></a>)<br />
+				<br /><input style="vertical-align: middle;" type="radio" id="path-1" name="afterlogic-path" value="web" <?php echo(($_['afterlogic-path']!="") ? 'checked="checked" ' : ''); ?>/>&nbsp;<label for="path-1">Web API (recommended option)</label>
+				<br /><input style="vertical-align: middle;" type="radio" id="path-2" name="afterlogic-path" value="" <?php echo(($_['afterlogic-path']=="") ? 'checked="checked" ' : ''); ?>/>&nbsp;<label for="path-2">POST (for diff. domains/servers)</label>
 				<br />
 				<br />
 				<input type="button" class="afterlogic-save-button"
