@@ -7,6 +7,8 @@
 
 namespace OCA\Afterlogic\Controller;
 
+use OCP\Server;
+use OCP\INavigationManager;
 use OCP\IRequest;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\AppFramework\Http\ContentSecurityPolicy;
@@ -25,7 +27,7 @@ class PageController extends Controller
      */
     public function index()
     {
-        \OC::$server->getNavigationManager()->setActiveEntry('afterlogic_index');
+        Server::get(INavigationManager::class)->setActiveEntry('afterlogic_index');
 
         $sUrl = trim(\OC::$server->getConfig()->getAppValue('afterlogic', 'afterlogic-url', ''));
         $sPath = trim(\OC::$server->getConfig()->getAppValue('afterlogic', 'afterlogic-path', ''));
