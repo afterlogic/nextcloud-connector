@@ -40,7 +40,9 @@ class PageController extends Controller
             $sEmail = \OC::$server->getConfig()->getUserValue($sUser, 'afterlogic', 'afterlogic-email', '');
             $sPassword = \OC::$server->getConfig()->getUserValue($sUser, 'afterlogic', 'afterlogic-password', '');
 
-            include_once \OC_App::getAppPath('afterlogic').'/lib/functions.php';
+	    $appManager = \OC::$server->getAppManager();
+	    $path = $appManager->getAppPath('afterlogic');
+            include_once $path.'/lib/functions.php';
 
             $sPassword = aftDecodePassword($sPassword, md5($sEmail));
 

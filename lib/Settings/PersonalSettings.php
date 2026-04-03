@@ -26,7 +26,9 @@ public function getForm(): TemplateResponse
     } else {
         $sUser = \OC_User::getUser();
         $sEmail = \OC::$server->getConfig()->getUserValue($sUser, 'afterlogic', 'afterlogic-email', '');
-        include_once \OC_App::getAppPath('afterlogic').'/lib/functions.php';
+	$appManager = \OC::$server->getAppManager();
+	$path = $appManager->getAppPath('afterlogic');
+        include_once $path.'/lib/functions.php';
         $sPassword = \OC::$server->getConfig()->getUserValue($sUser, 'afterlogic', 'afterlogic-password', '');
         $sPassword = aftDecodePassword($sPassword, md5($sEmail));
 

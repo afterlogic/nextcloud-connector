@@ -33,7 +33,9 @@ class AjaxController extends Controller
 
             $sPass = $_POST['afterlogic-password'];
             if ('******' !== $sPass) {
-                include_once \OC_App::getAppPath('afterlogic').'/lib/functions.php';
+		$appManager = \OC::$server->getAppManager();
+		$path = $appManager->getAppPath('afterlogic');
+                include_once $path.'/lib/functions.php';
 
                 \OC::$server->getConfig()->setUserValue(
                     $sUser,
