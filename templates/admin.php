@@ -19,7 +19,7 @@
 				<br /><input style="vertical-align: middle;" type="radio" id="path-2" name="afterlogic-path" value="" <?php echo(($_['afterlogic-path']=="") ? 'checked="checked" ' : ''); ?>/>&nbsp;<label for="path-2">POST (for diff. domains/servers)</label>
 				<br />
 				<br />
-				<input type="button" class="afterlogic-save-button"
+				<input type="submit" class="afterlogic-save-button"
 					value="<?php p($l->t('Save')); ?>" data-ajax-button-value="<?php p($l->t('Saving...')); ?>" />
 				
 				&nbsp;&nbsp;<span class="afterlogic-result"></span>

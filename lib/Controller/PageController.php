@@ -10,15 +10,25 @@ namespace OCA\Afterlogic\Controller;
 use OCP\Server;
 use OCP\INavigationManager;
 use OCP\IRequest;
+use OCP\IConfig;
+use OCP\IUserSession;
+use OCP\App\IAppManager;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\AppFramework\Http\ContentSecurityPolicy;
 use OCP\AppFramework\Controller;
 
 class PageController extends Controller
 {
-    public function __construct($appName, IRequest $request)
+    private $config;
+    private $userSession;
+    private $appManager;
+
+    public function __construct($appName, IRequest $request, IConfig $config, IUserSession $userSession, IAppManager $appManager)
     {
         parent::__construct($appName, $request);
+        $this->config = $config;
+        $this->userSession = $userSession;
+        $this->appManager = $appManager;
     }
 
     /**
@@ -29,19 +39,19 @@ class PageController extends Controller
     {
         Server::get(INavigationManager::class)->setActiveEntry('afterlogic_index');
 
-        $sUrl = trim(\OC::$server->getConfig()->getAppValue('afterlogic', 'afterlogic-url', ''));
-        $sPath = trim(\OC::$server->getConfig()->getAppValue('afterlogic', 'afterlogic-path', ''));
+        $sUrl = trim($this->config->getAppValue('afterlogic', 'afterlogic-url', ''));
+        $sPath = trim($this->config->getAppValue('afterlogic', 'afterlogic-path', ''));
 
         if ('' === $sUrl) {
             $oTemplate = new TemplateResponse('afterlogic', 'not-configured');
         } else {
-            $sUser = \OC_User::getUser();
+            $oUser = $this->userSession->getUser();
+            $sUser = $oUser ? $oUser->getUID() : '';
 
-            $sEmail = \OC::$server->getConfig()->getUserValue($sUser, 'afterlogic', 'afterlogic-email', '');
-            $sPassword = \OC::$server->getConfig()->getUserValue($sUser, 'afterlogic', 'afterlogic-password', '');
+            $sEmail = $this->config->getUserValue($sUser, 'afterlogic', 'afterlogic-email', '');
+            $sPassword = $this->config->getUserValue($sUser, 'afterlogic', 'afterlogic-password', '');
 
-	    $appManager = \OC::$server->getAppManager();
-	    $path = $appManager->getAppPath('afterlogic');
+	    $path = $this->appManager->getAppPath('afterlogic');
             include_once $path.'/lib/functions.php';
 
             $sPassword = aftDecodePassword($sPassword, md5($sEmail));

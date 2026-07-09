@@ -4,32 +4,43 @@ namespace OCA\Afterlogic\Settings;
 
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IConfig;
+use OCP\IUserSession;
+use OCP\App\IAppManager;
 use OCP\Settings\ISettings;
 
 class PersonalSettings implements ISettings
 {
-    public function __construct()
+    private $config;
+    private $userSession;
+    private $appManager;
+
+    public function __construct(IConfig $config, IUserSession $userSession, IAppManager $appManager)
     {
+        $this->config = $config;
+        $this->userSession = $userSession;
+        $this->appManager = $appManager;
     }
 
 
 public function getForm(): TemplateResponse
 {
-    \OC_Util::checkLoggedIn();
+    $oUser = $this->userSession->getUser();
+    if (!$oUser) {
+        return new TemplateResponse('afterlogic', 'empty', []);
+    }
     \OCP\Util::addScript('afterlogic', 'afterlogic');
 
-    $sUrl = trim(\OC::$server->getConfig()->getAppValue('afterlogic', 'afterlogic-url', ''));
-    $sPath = trim(\OC::$server->getConfig()->getAppValue('afterlogic', 'afterlogic-path', ''));
+    $sUrl = trim($this->config->getAppValue('afterlogic', 'afterlogic-url', ''));
+    $sPath = trim($this->config->getAppValue('afterlogic', 'afterlogic-path', ''));
 
     if ('' === $sUrl) {
         return new TemplateResponse('afterlogic', 'empty', []);
     } else {
-        $sUser = \OC_User::getUser();
-        $sEmail = \OC::$server->getConfig()->getUserValue($sUser, 'afterlogic', 'afterlogic-email', '');
-	$appManager = \OC::$server->getAppManager();
-	$path = $appManager->getAppPath('afterlogic');
+        $sUser = $oUser->getUID();
+        $sEmail = $this->config->getUserValue($sUser, 'afterlogic', 'afterlogic-email', '');
+	$path = $this->appManager->getAppPath('afterlogic');
         include_once $path.'/lib/functions.php';
-        $sPassword = \OC::$server->getConfig()->getUserValue($sUser, 'afterlogic', 'afterlogic-password', '');
+        $sPassword = $this->config->getUserValue($sUser, 'afterlogic', 'afterlogic-password', '');
         $sPassword = aftDecodePassword($sPassword, md5($sEmail));
 
         $parameters['afterlogic-email'] = $sEmail;

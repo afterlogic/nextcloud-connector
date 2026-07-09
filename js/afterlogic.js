@@ -1,75 +1,78 @@
+document.addEventListener('DOMContentLoaded', () => {
 
-$(function() {
+    document.querySelectorAll('.afterlogic-ajax-form').forEach(form => {
 
-	try
-	{
-		$('.afterlogic-ajax-form').each(function () {
-			
-			var
-				oForm = $(this),
-				sDataAjaxFile = oForm.data('ajax-file'),
-				oSubmit = $('.afterlogic-save-button', oForm),
-				oResult = $('.afterlogic-result', oForm)
-			;
+        if (form.dataset.formInited) {
+            return;
+        }
 
-			if (sDataAjaxFile && oSubmit && oSubmit[0] && oResult && oResult[0] &&
-				!oForm.data('form-inited'))
-			{
-				oForm.data('form-inited', true);
-				oSubmit.click(function (oEvent) {
+        form.dataset.formInited = '1';
 
-					oEvent.preventDefault();
-					
-					oForm
-						.removeClass('afterlogic-error afterlogic-success')
-						.addClass('afterlogic-ajax')
-					;
-					
-					oResult.text('');
-					oSubmit
-						.data('ajax-button-original-value', oSubmit.val())
-						.val(oSubmit.data('ajax-button-value'))
-					;
+        const ajaxFile = form.dataset.ajaxFile;
+        const submit = form.querySelector('.afterlogic-save-button');
+        const result = form.querySelector('.afterlogic-result');
 
-					$.ajax({
-						'type': 'POST',
-						'async': true,
-						'url': OC.filePath('afterlogic', 'ajax', sDataAjaxFile),
-						'data': oForm.serialize(),
-						'dataType': 'json',
-						'global': true
-					}).always(function (oData) {
+        if (!ajaxFile || !submit || !result) {
+            console.error('Afterlogic: form initialization failed.');
+            return;
+        }
 
-						var bResult = false;
+        form.addEventListener('submit', async (event) => {
 
-						oForm.removeClass('afterlogic-ajax');
-						oSubmit.val(oSubmit.data('ajax-button-original-value'));
+            event.preventDefault();
 
-						if (oData)
-						{
-							bResult = 'success' === oData['status'];
-							if (oData['Message'])
-							{
-								oResult.text(oData['Message']);
-							}
-						}
+            form.classList.remove('afterlogic-error', 'afterlogic-success');
+            form.classList.add('afterlogic-ajax');
 
-						if (bResult)
-						{
-							oForm.addClass('afterlogic-success');
-						}
-						else
-						{
-							oForm.addClass('afterlogic-error');
-							if ('' === oResult.text())
-							{
-								oResult.text('Error');
-							}
-						}
-					});
-				});
-			}
-		});
-	}
-	catch(e) {}
+            result.textContent = '';
+
+            const originalValue = submit.value;
+            submit.value = submit.dataset.ajaxButtonValue;
+
+            try {
+                const response = await fetch(
+                    OC.generateUrl('/apps/afterlogic/ajax/' + ajaxFile),
+                    {
+                        method: 'POST',
+                        body: new FormData(form),
+                        headers: {
+                            'requesttoken': OC.requestToken
+                        }
+                    }
+                );
+
+                let data = {};
+
+                try {
+                    data = await response.json();
+                } catch (e) {
+                    console.error('Invalid JSON response', e);
+                }
+
+                if (response.ok && data.status === 'success') {
+                    form.classList.add('afterlogic-success');
+                } else {
+                    form.classList.add('afterlogic-error');
+                }
+
+                result.textContent = data.Message || ('HTTP ' + response.status);
+
+            } catch (e) {
+
+                console.error(e);
+
+                form.classList.add('afterlogic-error');
+                result.textContent = 'Connection error';
+
+            } finally {
+
+                form.classList.remove('afterlogic-ajax');
+                submit.value = originalValue;
+
+            }
+
+        });
+
+    });
+
 });

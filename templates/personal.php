@@ -16,7 +16,7 @@
 				
 				<br />
 
-				<input type="button" class="afterlogic-save-button"
+				<input type="submit" class="afterlogic-save-button"
 					value="<?php p($l->t('Save')); ?>" data-ajax-button-value="<?php p($l->t('Saving...')); ?>" />
 				
 				&nbsp;&nbsp;<span class="afterlogic-result"></span>
